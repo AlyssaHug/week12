@@ -23,19 +23,24 @@ let settings = {
   banPerson:true,
   checkBans:true
 }
+//Add Registry Notes:
 
 // Define the ban list and the user list
 // Function to add a user if they are not in the ban list
+
+//CHALLENGE 01 Notes:
+// Initialize the boolean flag
+// Check if the user exists in the ban list
+//checkBan = true = Set flag to true if the user is banned
+// if (!checkBan) = Add user only if they are not banned
 function AddUserToRegistry() {
-    // Initialize the boolean flag
     let checkBan = false;
+    
     readline.question("What is the username?", _user=>{
-    // Check if the user exists in the ban list
     if (banned.includes(_user)) {
         checkBan = true; 
-        // Set flag to true if the user is banned
     }
-    // Add user only if they are not banned
+
     if (!checkBan) {
         users.push(_user);
         console.log(`${_user} has been added.`);
@@ -45,27 +50,26 @@ function AddUserToRegistry() {
     StartApp();
   })
 }
-
+//Check Registry Notes:
+ //loop through all the users and log them
 function CheckRegistry() {
-  //loop through all the users and log them
     for(let i=0; i<users.length; i++){
-        console.log(`The user is ${users[i]}`)
-        
+        console.log(`The user is ${users[i]}`) 
     }
     StartApp();
 }
-
-function BanUser(){
+//Ban user notes:
   //use readline to prompt for the name of the user to be banned
+function BanUser(){
   readline.question("What user are you banning?", _banUser=>{
     banned.push(_banUser);
     console.log(banned);
     StartApp();  
 })
 }
-
-function CheckBanned(){
+//Check banned list notes:
   //loop through all the banned users and log them
+function CheckBanned(){
   for(let i=0; i<banned.length; i++){
     console.log(`The banned user is ${banned[i]}`)
     
@@ -76,7 +80,6 @@ StartApp();
 function StartApp() {
   readline.question("What would you like to do? ", (_command) => {
     
-    //add other commands here to add
     if (_command === "quit") {
       readline.close();
       //quit app
