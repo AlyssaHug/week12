@@ -24,13 +24,26 @@ let settings = {
   checkBans:true
 }
 
+// Define the ban list and the user list
+// Function to add a user if they are not in the ban list
 function AddUserToRegistry() {
-  //user readline to prompt for the name of the user to be added
-  readline.question("What is the username?", _user=>{
-      users.push(_user);
-      console.log(users);
-      StartApp();  
-})
+    // Initialize the boolean flag
+    let checkBan = false;
+    readline.question("What is the username?", _user=>{
+    // Check if the user exists in the ban list
+    if (banned.includes(_user)) {
+        checkBan = true; 
+        // Set flag to true if the user is banned
+    }
+    // Add user only if they are not banned
+    if (!checkBan) {
+        users.push(_user);
+        console.log(`${_user} has been added.`);
+    } else {
+        console.log(`${_user} is banned and cannot be added.`);
+    }
+    StartApp();
+  })
 }
 
 function CheckRegistry() {
@@ -66,6 +79,7 @@ function StartApp() {
     //add other commands here to add
     if (_command === "quit") {
       readline.close();
+      //quit app
     }else if(_command === "add"){
       //add new user
       AddUserToRegistry();
