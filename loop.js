@@ -90,7 +90,6 @@ function Login(){
         console.log(`You are logged in as ${names[_index]}`)
         StartApp();
     })
-
 }
 
 StartApp();
