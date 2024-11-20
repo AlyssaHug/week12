@@ -34,47 +34,61 @@ let settings = {
 //checkBan = true = Set flag to true if the user is banned
 // if (!checkBan) = Add user only if they are not banned
 function AddUserToRegistry() {
+  if(settings.addRegistry === true){
     let checkBan = false;
     
     readline.question("What is the username?", _user=>{
     if (banned.includes(_user)) {
         checkBan = true; 
-    }
-
-    if (!checkBan) {
+    } if (!checkBan) {
         users.push(_user);
         console.log(`${_user} has been added.`);
     } else {
         console.log(`${_user} is banned and cannot be added.`);
     }
     StartApp();
-  })
+  }) 
+}else {
+  console.log("Permission Denied!")
+}
 }
 //Check Registry Notes:
  //loop through all the users and log them
 function CheckRegistry() {
+  if(settings.checkRegistry === true){
     for(let i=0; i<users.length; i++){
         console.log(`The user is ${users[i]}`) 
     }
     StartApp();
+  }else {
+    console.log("Permission Denied!")
+  }
 }
 //Ban user notes:
   //use readline to prompt for the name of the user to be banned
 function BanUser(){
+  if(settings.banPerson === true){
   readline.question("What user are you banning?", _banUser=>{
     banned.push(_banUser);
     console.log(banned);
     StartApp();  
 })
+}else {
+  console.log("Permission Denied!")
+}
 }
 //Check banned list notes:
   //loop through all the banned users and log them
 function CheckBanned(){
+  if(settings.checkBan === true){
   for(let i=0; i<banned.length; i++){
     console.log(`The banned user is ${banned[i]}`)
     
 }
 StartApp();
+}else {
+  console.log("Permission Denied!")
+}
 }
 
 function StartApp() {
@@ -95,8 +109,26 @@ function StartApp() {
 }else if(_command === "check ban list"){
   //check banned list
   CheckBanned();
+}else if(_command === "allow add") {
+  settings.addRegistry= !settings.addRegistry;
+  StartApp();
+}else if(_command === "allow check") {
+  settings.checkRegistry= !settings.checkRegistry;
+  StartApp();
+}else if(_command === "allow ban") {
+  settings.banPerson= !settings.banPerson;
+  StartApp();
+}else if(_command === "allow check ban list") {
+  settings.checkBan= !settings.checkBan;
+  StartApp();
 }
   });
 }
 
 StartApp();
+
+/* reviewed by Thea
+I helped out with challenge two.
+  Understood what I said clearly and implemented it well!
+Very good, clear, notes, very understandable. I like how she added them right beside the code to make it a lot more understandable.
+*/
